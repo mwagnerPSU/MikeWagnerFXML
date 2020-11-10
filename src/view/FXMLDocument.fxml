@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLDocumentController">
+    <children>
+      <Label fx:id="label" layoutX="126.0" layoutY="83.0" minHeight="16" minWidth="69" />
+      <Button fx:id="createBtn" layoutX="25.0" layoutY="116.0" mnemonicParsing="false" onAction="#createMedicalProfessional" text="Create" />
+      <Button fx:id="readBtn" layoutX="100.0" layoutY="116.0" mnemonicParsing="false" onAction="#readMedicalProfessionalInfo" text="Read" />
+      <Button fx:id="updateBtn" layoutX="169.0" layoutY="116.0" mnemonicParsing="false" onAction="#updateMedicalProfessionalInfo" text="Update" />
+      <Button fx:id="deleteBtn" layoutX="242.0" layoutY="116.0" mnemonicParsing="false" onAction="#deleteMedicalProfessional" text="Delete" />
+      <Button fx:id="clickBtn" layoutX="128.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Click Me!" />
+      <Button fx:id="fullNameButton" layoutX="20.0" layoutY="155.0" mnemonicParsing="false" onAction="#readMedicalProfessionalInfoByFullName" text="Find By Full Name" />
+      <Button fx:id="firstCredsButton" layoutX="138.0" layoutY="155.0" mnemonicParsing="false" onAction="#readMedicalProfessionalInfoByFirstNameAndCreds" text="Find By First Name and Creds" />
+    </children>
+</AnchorPane>
