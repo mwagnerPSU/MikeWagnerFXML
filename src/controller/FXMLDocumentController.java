@@ -9,12 +9,19 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javax.swing.JButton;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -39,7 +46,29 @@ public class FXMLDocumentController implements Initializable {
     private Label inputLabel;
     private TextField inputTextField;
     private JButton enterBtn;
-    private TableView tableView;
+    @FXML
+    private TableView <MedicalProfessionalModel> tableView;
+    @FXML
+    private TableColumn <MedicalProfessionalModel, Integer> profID;
+    @FXML
+    private TableColumn <MedicalProfessionalModel, String> profFName;
+    @FXML
+    private TableColumn <MedicalProfessionalModel, String> profLName;
+    @FXML
+    private TableColumn <MedicalProfessionalModel, String> profCreds;
+    
+    private ObservableList<MedicalProfessionalModel> medProfData;
+    
+    public void setTableData(List<MedicalProfessionalModel> profList){
+        medProfData = FXCollections.observableArrayList();
+        
+        profList.forEach(mP -> {
+            medProfData.add(mP);
+        });
+        
+        tableView.setItems(medProfData);
+        tableView.refresh();
+    }
     
     //create operation
     public void create(MedicalProfessionalModel mpPerson) {
@@ -395,8 +424,22 @@ public class FXMLDocumentController implements Initializable {
         List<MedicalProfessionalModel> mpPersons = readByNameAndCredentials(fName, credentials);
     }
     
-    @FXML private void searchData(ActionEvent event){
+    @FXML 
+    private void searchData(ActionEvent event){
         System.out.println("Clicked");
+        String name = inputTextField.getText();
+        
+        List<MedicalProfessionalModel> mpPersons = readByFName(name);
+        
+        if (mpPersons == null || mpPersons.isEmpty()){
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Error: Table is empty");
+            alert.setHeaderText("Add a Medical Professional to the table");
+            alert.setContentText("Table is empty");
+        }
+        else{
+            setTableData(mpPersons);
+        }
     }
     
     EntityManager manager;
@@ -404,6 +447,13 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         manager = (EntityManager) Persistence.createEntityManagerFactory("MikeWagnerFXMLPU").createEntityManager();
+        
+        profFName.setCellValueFactory(new PropertyValueFactory<>("firstname"));
+        profID.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        profLName.setCellValueFactory(new PropertyValueFactory<>("LASTNAME"));
+        profCreds.setCellValueFactory(new PropertyValueFactory<>("CREDENTIALS"));
+
+        tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }    
     
 }
