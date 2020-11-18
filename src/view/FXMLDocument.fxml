@@ -21,10 +21,10 @@
       <Separator layoutX="20.0" layoutY="201.0" prefHeight="25.0" prefWidth="335.0" />
       <TableView fx:id="tableView" layoutX="17.0" layoutY="334.0" prefHeight="207.0" prefWidth="335.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="ID" />
-          <TableColumn prefWidth="73.5" text="First Name" />
-            <TableColumn prefWidth="73.5" text="Last Name" />
-            <TableColumn prefWidth="111.0" text="Credentials" />
+          <TableColumn fx:id="profID" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="profFName" prefWidth="73.5" text="First Name" />
+            <TableColumn fx:id="profLName" prefWidth="73.5" text="Last Name" />
+            <TableColumn fx:id="profCreds" prefWidth="111.0" text="Credentials" />
         </columns>
       </TableView>
       <Label fx:id="inputLabel" layoutX="20.0" layoutY="298.0" prefHeight="17.0" prefWidth="101.0" text="Enter Name:" />
