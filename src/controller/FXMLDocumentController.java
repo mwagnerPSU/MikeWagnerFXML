@@ -13,6 +13,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javax.swing.JButton;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -34,6 +36,10 @@ public class FXMLDocumentController implements Initializable {
     private JButton clickBtn;
     private JButton fullNameButton;
     private JButton firstCredsButton;
+    private Label inputLabel;
+    private TextField inputTextField;
+    private JButton enterBtn;
+    private TableView tableView;
     
     //create operation
     public void create(MedicalProfessionalModel mpPerson) {
@@ -387,6 +393,10 @@ public class FXMLDocumentController implements Initializable {
         System.out.println("");
             
         List<MedicalProfessionalModel> mpPersons = readByNameAndCredentials(fName, credentials);
+    }
+    
+    @FXML private void searchData(ActionEvent event){
+        System.out.println("Clicked");
     }
     
     EntityManager manager;
