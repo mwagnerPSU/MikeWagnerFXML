@@ -27,8 +27,9 @@
             <TableColumn fx:id="profCreds" prefWidth="111.0" text="Credentials" />
         </columns>
       </TableView>
-      <Label fx:id="inputLabel" layoutX="20.0" layoutY="298.0" prefHeight="17.0" prefWidth="101.0" text="Enter Name:" />
-      <TextField fx:id="inputTextField" layoutX="97.0" layoutY="294.0" prefHeight="25.0" prefWidth="181.0" />
-      <Button fx:id="enterBtn" layoutX="296.0" layoutY="294.0" mnemonicParsing="false" onAction="#searchData" text="Search" />
+      <Label fx:id="inputLabel" layoutX="17.0" layoutY="270.0" prefHeight="17.0" prefWidth="69.0" text="Enter Name:" />
+      <TextField fx:id="inputTextField" layoutX="97.0" layoutY="266.0" prefHeight="25.0" prefWidth="181.0" />
+      <Button fx:id="enterBtn" layoutX="298.0" layoutY="266.0" mnemonicParsing="false" onAction="#searchData" text="Search" />
+      <Button fx:id="advancedSearchBtn" layoutX="244.0" layoutY="301.0" mnemonicParsing="false" onAction="#advancedSearch" text="Advanced Search" />
     </children>
 </AnchorPane>
