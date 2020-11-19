@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -13,7 +14,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
@@ -22,6 +26,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javax.swing.JButton;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -48,6 +53,7 @@ public class FXMLDocumentController implements Initializable {
     private TextField inputTextField;
     private JButton enterBtn;
     private JButton advancedSearchBtn;
+    private JButton showDetailsBtn;
     @FXML
     private TableView <MedicalProfessionalModel> tableView;
     @FXML
@@ -475,6 +481,35 @@ public class FXMLDocumentController implements Initializable {
         else{
             setTableData(mpPersons);
         }
+    }
+    
+    @FXML
+    private void showDetails(ActionEvent event) throws IOException{
+        System.out.println("clicked");
+
+        
+        // pass currently selected model
+        MedicalProfessionalModel selectedProf = tableView.getSelectionModel().getSelectedItem();
+        
+        // fxml loader
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DetailedModelView.fxml"));
+
+        // load the ui elements
+        Parent detailedModelView = loader.load();
+
+        // load the scene
+        Scene tableViewScene = new Scene(detailedModelView);
+
+        //access the detailedControlled and call a method
+        DetailedModelViewController detailedControlled = loader.getController();
+
+
+        detailedControlled.initData(selectedProf);
+
+        // create a new state
+        Stage stage = new Stage();
+        stage.setScene(tableViewScene);
+        stage.show();
     }
     
     EntityManager manager;
