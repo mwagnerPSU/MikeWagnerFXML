@@ -44,6 +44,7 @@ public class FXMLDocumentController implements Initializable {
     private JButton fullNameButton;
     private JButton firstCredsButton;
     private Label inputLabel;
+    @FXML
     private TextField inputTextField;
     private JButton enterBtn;
     @FXML
@@ -382,11 +383,11 @@ public class FXMLDocumentController implements Initializable {
         System.out.println("Are you sure you want to delete: ");
         mpPerson = readById(id);
         
-        System.out.print("Type Y/N: ");
+        System.out.print("Type y/n: ");
         String confirmation = userInput.next();
         System.out.println("");
         
-        if(confirmation.equals("Y")){
+        if(confirmation.equals("y")){
             System.out.println("This medical professional has been deleted: ");
             System.out.println("ID: " + mpPerson.getId() + " | Name: " + mpPerson.getFirstname() + " " + mpPerson.getLastname() + " | Credentials: " + mpPerson.getCredentials());
             System.out.println("");
@@ -448,10 +449,10 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         manager = (EntityManager) Persistence.createEntityManagerFactory("MikeWagnerFXMLPU").createEntityManager();
         
-        profFName.setCellValueFactory(new PropertyValueFactory<>("firstname"));
+        profFName.setCellValueFactory(new PropertyValueFactory<>("Firstname"));
         profID.setCellValueFactory(new PropertyValueFactory<>("Id"));
-        profLName.setCellValueFactory(new PropertyValueFactory<>("LASTNAME"));
-        profCreds.setCellValueFactory(new PropertyValueFactory<>("CREDENTIALS"));
+        profLName.setCellValueFactory(new PropertyValueFactory<>("Lastname"));
+        profCreds.setCellValueFactory(new PropertyValueFactory<>("Credentials"));
 
         tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }    
