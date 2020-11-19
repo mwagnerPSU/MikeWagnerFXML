@@ -47,6 +47,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextField inputTextField;
     private JButton enterBtn;
+    private JButton advancedSearchBtn;
     @FXML
     private TableView <MedicalProfessionalModel> tableView;
     @FXML
@@ -225,6 +226,21 @@ public class FXMLDocumentController implements Initializable {
         
         return mpPersons;
     }   
+    
+    public List<MedicalProfessionalModel> readByFNameAdvanced(String fName){
+        Query query = manager.createNamedQuery("MedicalProfessionalModel.findByNameAdvanced");
+        
+        // setting query parameter
+        query.setParameter("firstname", fName);
+        
+        // execute query
+        List<MedicalProfessionalModel> mpPerson =  query.getResultList();
+        for (MedicalProfessionalModel person: mpPerson) {
+            System.out.println("ID: " + person.getId() + " | Name: " + person.getFirstname() + " " + person.getLastname() + " | Credentials: " + person.getCredentials());
+        }
+        
+        return mpPerson;
+    }
     
      
     public List<MedicalProfessionalModel> readByNameAndCredentials(String fName, String credentials){
@@ -431,6 +447,24 @@ public class FXMLDocumentController implements Initializable {
         String name = inputTextField.getText();
         
         List<MedicalProfessionalModel> mpPersons = readByFName(name);
+        
+        if (mpPersons == null || mpPersons.isEmpty()){
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Error: Table is empty");
+            alert.setHeaderText("Add a Medical Professional to the table");
+            alert.setContentText("Table is empty");
+        }
+        else{
+            setTableData(mpPersons);
+        }
+    }
+    
+    @FXML
+    private void advancedSearch(ActionEvent event){
+        System.out.println("Clicked");
+        String name = inputTextField.getText();
+        
+        List<MedicalProfessionalModel> mpPersons = readByFNameAdvanced(name);
         
         if (mpPersons == null || mpPersons.isEmpty()){
             Alert alert = new Alert(AlertType.INFORMATION);
