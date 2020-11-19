@@ -32,7 +32,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "MedicalProfessionalModel.findByLastname", query = "SELECT m FROM MedicalProfessionalModel m WHERE m.lastname = :lastname")
     , @NamedQuery(name = "MedicalProfessionalModel.findByCredentials", query = "SELECT m FROM MedicalProfessionalModel m WHERE m.credentials = :credentials")
     , @NamedQuery(name = "MedicalProfessionalModel.findByFullName", query = "SELECT m FROM MedicalProfessionalModel m WHERE m.firstname = :firstname and m.lastname = :lastname")
-    , @NamedQuery(name = "MedicalProfessionalModel.findByFirstNameAndCredentials", query = "SELECT m FROM MedicalProfessionalModel m WHERE m.firstname = :firstname and m.credentials = :credentials")})
+    , @NamedQuery(name = "MedicalProfessionalModel.findByFirstNameAndCredentials", query = "SELECT m FROM MedicalProfessionalModel m WHERE m.firstname = :firstname and m.credentials = :credentials")
+    , @NamedQuery(name = "MedicalProfessionalModel.findByNameAdvanced", query = "SELECT m FROM MedicalProfessionalModel m WHERE LOWER(m.firstname) LIKE CONCAT('%', LOWER(:firstname), '%')")})
 public class MedicalProfessionalModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
