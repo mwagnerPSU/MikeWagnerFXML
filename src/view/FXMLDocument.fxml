@@ -7,8 +7,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="557.0" prefWidth="373.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="589.0" prefWidth="373.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLDocumentController">
     <children>
       <Label fx:id="label" layoutX="288.0" layoutY="154.0" minHeight="16" minWidth="69" />
       <Button fx:id="createBtn" layoutX="20.0" layoutY="25.0" mnemonicParsing="false" onAction="#createMedicalProfessional" text="Create Person" />
@@ -27,9 +28,15 @@
             <TableColumn fx:id="profCreds" prefWidth="111.0" text="Credentials" />
         </columns>
       </TableView>
-      <Label fx:id="inputLabel" layoutX="17.0" layoutY="270.0" prefHeight="17.0" prefWidth="69.0" text="Enter Name:" />
+      <Label fx:id="inputLabel" layoutX="20.0" layoutY="270.0" prefHeight="17.0" prefWidth="69.0" text="Enter Name:" />
       <TextField fx:id="inputTextField" layoutX="97.0" layoutY="266.0" prefHeight="25.0" prefWidth="181.0" />
       <Button fx:id="enterBtn" layoutX="298.0" layoutY="266.0" mnemonicParsing="false" onAction="#searchData" text="Search" />
       <Button fx:id="advancedSearchBtn" layoutX="244.0" layoutY="301.0" mnemonicParsing="false" onAction="#advancedSearch" text="Advanced Search" />
+      <Label layoutX="20.0" layoutY="218.0" text="Search Medical Professionals">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Button fx:id="showDetailsBtn" layoutX="267.0" layoutY="550.0" mnemonicParsing="false" onAction="#showDetails" text="Show Details" />
     </children>
 </AnchorPane>
