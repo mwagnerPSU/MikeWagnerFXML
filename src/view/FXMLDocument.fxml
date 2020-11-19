@@ -38,5 +38,6 @@
          </font>
       </Label>
       <Button fx:id="showDetailsBtn" layoutX="267.0" layoutY="550.0" mnemonicParsing="false" onAction="#showDetails" text="Show Details" />
+      <Button fx:id="showDetailsPlaceBtn" layoutX="120.0" layoutY="550.0" mnemonicParsing="false" onAction="#showDetailsInPlace" text="Show Details In-Place" />
     </children>
 </AnchorPane>

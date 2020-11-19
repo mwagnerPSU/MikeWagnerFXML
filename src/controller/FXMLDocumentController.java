@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -54,6 +55,7 @@ public class FXMLDocumentController implements Initializable {
     private JButton enterBtn;
     private JButton advancedSearchBtn;
     private JButton showDetailsBtn;
+    private JButton showDetailsPlaceBtn;
     @FXML
     private TableView <MedicalProfessionalModel> tableView;
     @FXML
@@ -508,6 +510,41 @@ public class FXMLDocumentController implements Initializable {
 
         // create a new state
         Stage stage = new Stage();
+        stage.setScene(tableViewScene);
+        stage.show();
+    }
+    
+    @FXML
+    private void showDetailsInPlace(ActionEvent event) throws IOException{
+        System.out.println("clicked");
+
+        
+                // pass currently selected model
+        MedicalProfessionalModel selectedStudent = tableView.getSelectionModel().getSelectedItem();
+
+        
+        // fxml loader
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DetailedModelView.fxml"));
+
+        // load the ui elements
+        Parent detailedModelView = loader.load();
+
+        // load the scene
+        Scene tableViewScene = new Scene(detailedModelView);
+
+        //access the detailedControlled and call a method
+        DetailedModelViewController detailedControlled = loader.getController();
+
+
+        detailedControlled.initData(selectedStudent);
+
+        // pass current scene to return
+        Scene currentScene = ((Node) event.getSource()).getScene();
+        detailedControlled.setPreviousScene(currentScene);
+
+        //This line gets the Stage information
+        Stage stage = (Stage) currentScene.getWindow();
+
         stage.setScene(tableViewScene);
         stage.show();
     }
